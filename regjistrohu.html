@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+    }
+
+    .navbar {
+     
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 60px;
+      background: white;
+        }
+
+    .navbar a{
+      margin-left: 20px;
+      text-decoration: none;
+      color: #ff0000;
+    }
+
+    .container {
+      width: 350px;
+      margin: 80px auto;
+      padding: 40px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h2 {
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #218838;
+    }
+    .link a {
+      text-decoration: none;
+      color: #ff0000;
+    }
+
+    @media (max-width: 768px) {
+  .timeline-item {
+    flex-direction: column;
+  }
+
+  .reverse {
+    flex-direction: column;
+  }
+
+  .hero-img img {
+    width: 90%;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo"><img src="https://sachpizza.com/assets/images/SachPizzaLogo.png" alt=""></div>
+
+  <nav class="main-nav">
+    <a href="index.html">Ballina</a>
+    <a href="about.html">Rreth Nesh</a>
+    <a href="lokacionet.html">Lokacionet</a>
+    <a href="hyr.html" class="login">Hyr</a>
+    <a href="regjistrohu.html" class="register">Regjistrohu</a>
+  </nav>
+</header>
+
+<div class="container">
+    <img src="https://sachpizza.com/assets/images/SachPizzaLogo.png" alt="">
+  <h2>Regjistrohuni per te filluar</h2>
+  <form>
+    <input type="text" placeholder="Emri dhe mbiemri" required>
+    <input type="email" placeholder="Email" required>
+    <input type="password" placeholder="Fjalkalimi" required>
+    <input type="password" placeholder="Konfirmimi i Fjalkalimit" required>
+    <button type="submit">Regjistrohu</button>
+    <footer>ke tashme nje llogari?</footer>
+    
+    <div class="link">
+    <a href="hyr.html">Hyr</a>
+    </div>
+    
+  </form>
+</div>
+
+</body>
+</html>

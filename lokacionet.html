@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Locations</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo"><img src="https://sachpizza.com/assets/images/SachPizzaLogo.png" alt=""></div>
+
+  <nav class="main-nav">
+    <a href="index.html">Ballina</a>
+    <a href="about.html">Rreth Nesh</a>
+    <a href="lokacionet.html">Lokacionet</a>
+    <a href="hyr.html" class="login">Hyr</a>
+    <a href="regjistrohu.html" class="register">Regjistrohu</a>
+  </nav>
+</header>
+
+<section class="container">
+  <h2>OUR LOCATIONS</h2>
+
+  <input type="text" id="search" placeholder="Search city..." />
+
+  <div class="content">
+
+    <div id="locations" class="locations-list"></div>
+
+    <div id="map"></div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer">
+    <div>
+      <h4>Menu</h4>
+      <p>Pizza</p>
+      <p>Burgers</p>
+      <p>Salads</p>
+    </div>
+
+    <div>
+      <h4>Locations</h4>
+      <p>Prishtina</p>
+      <p>Lipjan</p>
+      <p>Ferizaj</p>
+    </div>
+
+    <div>
+      <h4>Contact</h4>
+      <p>+383 44 896 896</p>
+      <p>Prishtina, Kosovo</p>
+    </div>
+
+    <div>
+      <h4>Payments</h4>
+      <p>VISA</p>
+      <p>MasterCard</p>
+    </div>
+  </div>
+</footer>
+
+    <style>
+        body {
+  margin: 0;
+  font-family: Arial;
+  background: #f5f5f5;
+}
+
+header {
+  padding: 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 60px;
+  background: white;
+}
+
+a {
+      text-decoration: none;
+      color: #ff0000;
+    }
+
+.logo {
+  color: red;
+}
+
+.container {
+  padding: 40px;
+}
+
+h2 {
+  color: #1e6b3a;
+}
+
+#search {
+  width: 300px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+
+.content {
+  display: flex;
+  gap: 20px;
+}
+
+.locations-list {
+  width: 30%;
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.card.active {
+  border: 2px solid #1e6b3a;
+  background: #e6f4ec;
+}
+
+#map {
+  width: 70%;
+  height: 450px;
+  border-radius: 10px;
+}
+
+/* FOOTER */
+footer {
+  background: #111;
+  color: white;
+  margin-top: 50px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+  padding: 40px;
+}
+
+.footer p {
+  color: #ccc;
+}
+
+@media (max-width: 768px) {
+  .timeline-item {
+    flex-direction: column;
+  }
+
+  .reverse {
+    flex-direction: column;
+  }
+
+  .hero-img img {
+    width: 90%;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+    </style>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+const locations = [
+  {
+    name: "SachPizza Prishtinë - Qender",
+    city: "Prishtinë",
+    country: "Kosovo",
+    coords: [42.6629, 21.1655]
+  },
+  {
+    name: "SachPizza Lipjan",
+    city: "Lipjan",
+    country: "Kosovo",
+    coords: [42.5215, 21.1256]
+  },
+  {
+    name: "SachPizza Ferizaj",
+    city: "Ferizaj",
+    country: "Kosovo",
+    coords: [42.3702, 21.1553]
+  },
+
+  {
+    name: "Sachcaffe East Gate Mall",
+    city: "Skopje",
+    country: "North Macedonia",
+    coords: [41.9981, 21.4254]
+  },
+  {
+    name: "Sachcaffe Skopje Center",
+    city: "Skopje",
+    country: "North Macedonia",
+    coords: [41.9965, 21.4314]
+  },
+
+  {
+    name: "Sachcaffe Tiranë",
+    city: "Tiranë",
+    country: "Albania",
+    coords: [41.3275, 19.8187]
+  },
+  {
+    name: "SachPizza Durrës",
+    city: "Durrës",
+    country: "Albania",
+    coords: [41.3231, 19.4414]
+  }
+];
+
+const map = L.map('map').setView([42.5, 20.9], 6);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap'
+}).addTo(map);
+
+const container = document.getElementById("locations");
+let markers = [];
+
+function render(list) {
+  container.innerHTML = "";
+  markers.forEach(m => map.removeLayer(m));
+  markers = [];
+
+  list.forEach((loc, index) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `<h3>${loc.name}</h3><p>${loc.city}</p>`;
+
+    const marker = L.marker(loc.coords).addTo(map)
+      .bindPopup(loc.name);
+
+    markers.push(marker);
+
+    card.onclick = () => {
+      document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
+      card.classList.add("active");
+
+      map.setView(loc.coords, 13);
+      marker.openPopup();
+    };
+
+    container.appendChild(card);
+  });
+}
+
+document.getElementById("search").addEventListener("input", (e) => {
+  const value = e.target.value.toLowerCase();
+  const filtered = locations.filter(loc =>
+    loc.city.toLowerCase().includes(value)
+  );
+  render(filtered);
+});
+
+render(locations);
+</script>
+
+</body>
+</html>

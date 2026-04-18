@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Form</title>
+</head>
+<body>
+
+<header class="navbar">
+  
+  <nav>
+    
+     <a href="index.html">Ballina</a>
+    <a href="about.html">Rreth Nesh</a>
+    <a href="lokacionet.html">Lokacionet</a>
+    <a href="hyr.html" class="login">Hyr</a>
+    
+  </nav>
+</header>
+
+<div class="container">
+    <img src="https://sachpizza.com/assets/images/SachPizzaLogo.png" alt="">
+  <h2>To log in, enter your email addres</h2>
+  <form>
+    <input type="email" placeholder="Adresa e emailt" required>
+    <input type="password" placeholder="Fjalkalimi" required>
+    <button type="submit">Continue</button>
+  </form>
+
+  <div class="link">
+    <p>Don't have an account? <a href="regjistrohu.html">Regjistrohu</a></p>
+  </div>
+</div>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff3f3;
+    }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 60px;
+  background: white;
+}
+
+.logo {
+  color: #e63946;
+  font-weight: bold;
+  width: 20px;
+}
+
+.navbar a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #ff0000;
+}
+
+    .container {
+      width: 350px;
+      margin: 80px auto;
+      padding: 40px;
+      background: rgb(255, 255, 255);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h2 {
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #2cac21;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0fb300;
+    }
+    .link {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .link a {
+      text-decoration: none;
+      color: #ff0000;
+    }
+
+    @media (max-width: 768px) {
+  .timeline-item {
+    flex-direction: column;
+  }
+
+  .reverse {
+    flex-direction: column;
+  }
+
+  .hero-img img {
+    width: 90%;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+  </style>
+</body>
+</html>
